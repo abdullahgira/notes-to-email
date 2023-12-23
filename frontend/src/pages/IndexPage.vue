@@ -1,17 +1,45 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="container">
+    <AppPageHeader header="Groups">
+      <template v-slot:right>
+        <div class="row items-center q-gutter-sm">
+          <q-btn flat icon="upload" label="Upload .txt" @click="addRow" />
+          <q-btn icon="add" color="primary" label="New" @click="onNewSite" />
+        </div>
+      </template>
+    </AppPageHeader>
+
+    <q-table class="q-mt-md" :columns="cols" @rowClick="onRowClick">
+      <template v-slot:top>
+        <q-space />
+        <q-input dense debounce="300" color="primary" v-model="filter">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
+    </q-table>
   </q-page>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup>
+import { ref } from "vue";
+import AppPageHeader from "src/components/AppPageHeader.vue";
 
-export default defineComponent({
-  name: 'IndexPage'
-})
+const cols = ref([
+  {
+    name: "name",
+    field: "name",
+    label: "Name",
+    align: "left",
+  },
+  {
+    name: "notes",
+    field: "notes-count",
+    label: "# Notes",
+    align: "left",
+  },
+]);
+
+const onRowClick = (_, row) => {};
 </script>
