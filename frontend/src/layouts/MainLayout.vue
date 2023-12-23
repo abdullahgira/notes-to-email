@@ -4,7 +4,7 @@
       <q-toolbar>
         <q-toolbar-title>Notes to Email</q-toolbar-title>
         <div>
-          <q-btn flat color="grey-8" label="Logout" />
+          <q-btn flat color="grey-8" label="Logout" @click="onLogout" />
         </div>
       </q-toolbar>
     </q-header>
@@ -15,4 +15,10 @@
   </q-layout>
 </template>
 
-<script setup></script>
+<script setup>
+import { getAuth } from "firebase/auth";
+
+const onLogout = () => {
+  getAuth().signOut();
+};
+</script>

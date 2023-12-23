@@ -23,8 +23,14 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+
+import { groupsApi } from "src/api/groups-api";
+import { useAxios } from "src/composables/use-axios";
+
 import AppPageHeader from "src/components/AppPageHeader.vue";
+
+const { run, data, loading } = useAxios();
 
 const cols = ref([
   {
@@ -42,4 +48,8 @@ const cols = ref([
 ]);
 
 const onRowClick = (_, row) => {};
+
+onMounted(() => {
+  run(groupsApi.getAll());
+});
 </script>

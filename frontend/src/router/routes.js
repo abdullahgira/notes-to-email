@@ -5,8 +5,7 @@ const routes = [
   {
     path: "/",
     beforeEnter: async () => {
-      const auth = getAuth();
-      const user = auth.currentUser;
+      const user = getAuth().currentUser;
       if (!user) return pathnames.login;
 
       return true;
@@ -17,8 +16,7 @@ const routes = [
   {
     path: pathnames.login,
     beforeEnter: async () => {
-      const auth = getAuth();
-      const user = auth.currentUser;
+      const user = getAuth().currentUser;
       if (user) return pathnames.home;
 
       return true;
